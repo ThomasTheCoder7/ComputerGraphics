@@ -96,6 +96,7 @@ class ParametricBezierCurvePanel extends JPanel {
        // computer n+1 uniform parameterized values b/w 0 and 1
         for (int i = 0; i <= N; i++) {
             t = i * delta;
+          //    (1 - t) * P0        + t * P1
             x = (1 - t) * P0.getX() + t * P1.getX();
             y = (1 - t) * P0.getY() + t * P1.getY();
             Pt_x[i] = (int) Math.round(x);
@@ -141,6 +142,7 @@ class ParametricBezierCurvePanel extends JPanel {
         // computer n+1 uniform parameterized values b/w 0 and 1
         for (int i = 0; i <= N; i++) {
             t = i * delta;
+
             x = Math.pow((1 - t),3) * P0.getX() + 3*t *Math.pow((1-t),2)* P1.getX()+3*Math.pow(t,2)*(1-t)*P2.getX()+Math.pow(t,3)*P3.getX();
             y = Math.pow((1 - t),3) * P0.getY() + 3*t *Math.pow((1-t),2)* P1.getY()+3*Math.pow(t,2)*(1-t)*P2.getY()+Math.pow(t,3)*P3.getY();
             Pt_x[i] = (int) Math.round(x);
