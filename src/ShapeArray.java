@@ -5,7 +5,7 @@ public class ShapeArray {
     private Color[] ac;
     private boolean[] filled;
     private int Capacity = 20;
-    public int Size = 0;
+    public int size = 0;
 
     public ShapeArray()
     {
@@ -13,53 +13,59 @@ public class ShapeArray {
         ac = new Color[Capacity];
         filled = new boolean[Capacity];
     }
-
+    public void set(Shape s, Color c, boolean fill, int i){
+        as[i]=s;
+        ac[i]=c;
+        filled[i]=fill;
+    }
     public void add(Shape s,Color c,boolean fill)
     {
 
-        if(Size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
+        if(size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
         {
             increaseSize();
         }
 
-        as[Size]=s;
-        ac[Size]=c;
-        filled[Size]=fill;
-        Size++;
+        as[size]=s;
+        ac[size]=c;
+        filled[size]=fill;
+        size++;
 
     }
 
     public void add(Shape s,Color c)
     {
 
-        if(Size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
+        if(size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
         {
             increaseSize();
         }
 
-        as[Size]=s;
-        ac[Size]=c;
-        filled[Size]=false;
-        Size++;
+        as[size]=s;
+        ac[size]=c;
+        filled[size]=false;
+        size++;
 
     }
     public void add(Shape s)
     {
 
-        if(Size >= Capacity - 5)//RUNNING OUT OF SPACE ? NO PROBLEM
+        if(size >= Capacity - 5)//RUNNING OUT OF SPACE ? NO PROBLEM
         {
             increaseSize();
         }
 
-        as[Size]=s;
-        ac[Size]=Color.BLUE;
-        Size++;
+        as[size]=s;
+        ac[size]=Color.BLUE;
+        size++;
 
     }
 
     public Shape getShape(int i){ return as[i]; } //returning shape
 
     public Color getColor(int i){ return ac[i]; } //returning color
+
+    public boolean getFilled(int i){ return filled[i]; }
 
     private void increaseSize()
     {
@@ -77,7 +83,7 @@ public class ShapeArray {
     }
 
     public void clear(){
-        Size=0;
+        size =0;
     }
 
 }
