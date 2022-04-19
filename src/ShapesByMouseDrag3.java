@@ -207,13 +207,11 @@ public class ShapesByMouseDrag3 extends JFrame {
         public void makePolygon() {
             if(p1!=null) {
                 if (samepoly) {
-                    points.add(p1.x, p1.y); //add the point into the array
                     p.addPoint(p1.x, p1.y); //add the point into the shape
 
                 } else {
                     p = new Polygon();
                     shapeArray.add(p, c,fill); //adding shape to the array
-                    points.add(p1.x, p1.y);
                     p.addPoint(p1.x, p1.y);
                     samepoly = true;
                 }

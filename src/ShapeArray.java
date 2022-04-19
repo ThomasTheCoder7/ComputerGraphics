@@ -3,87 +3,69 @@ import java.awt.*;
 public class ShapeArray {
     private Shape[] as;
     private Color[] ac;
-    private boolean[] filled;
-    private int Capacity = 20;
+    MyShape[] a;
+    private int Capacity = 10;
     public int size = 0;
 
     public ShapeArray()
     {
-        as = new Shape[Capacity];
-        ac = new Color[Capacity];
-        filled = new boolean[Capacity];
+        a=new MyShape[Capacity];
     }
     public void set(Shape s, Color c, boolean fill, int i){
-        as[i]=s;
-        ac[i]=c;
-        filled[i]=fill;
+        a[i]=new MyShape(s,c,fill);
     }
     public void add(Shape s,Color c,boolean fill)
     {
+        System.out.println("Capacity:"+Capacity+"  "+"Size:"+size);
 
-        if(size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
+        if(size >= Capacity)//RUNNING OUT OF SPACE?... NO PROBLEM
         {
             increaseSize();
         }
 
-        as[size]=s;
-        ac[size]=c;
-        filled[size]=fill;
+        a[size]=new MyShape(s,c,fill);
         size++;
 
     }
 
     public void add(Shape s,Color c)
     {
-
-        if(size >= Capacity - 5)//RUNNING OUT OF SPACE?... NO PROBLEM
+        System.out.println("Capacity:"+Capacity+"  "+"Size:"+size);
+        if(size >= Capacity)//RUNNING OUT OF SPACE?... NO PROBLEM
         {
             increaseSize();
         }
 
-        as[size]=s;
-        ac[size]=c;
-        filled[size]=false;
+        a[size]=new MyShape(s,c);
         size++;
 
     }
-    public void add(Shape s)
-    {
+    public Shape getShape(int i){ return a[i].getS(); } //returning shape
 
-        if(size >= Capacity - 5)//RUNNING OUT OF SPACE ? NO PROBLEM
-        {
-            increaseSize();
-        }
+    public Color getColor(int i){ return a[i].getC(); } //returning color
 
-        as[size]=s;
-        ac[size]=Color.BLUE;
-        size++;
-
-    }
-
-    public Shape getShape(int i){ return as[i]; } //returning shape
-
-    public Color getColor(int i){ return ac[i]; } //returning color
-
-    public boolean getFilled(int i){ return filled[i]; }
+    public boolean getFilled(int i){ return a[i].isfilled(); }
 
     private void increaseSize()
     {
         Capacity*=2; //FULL CAPACITY !!!!! DOUBLE IT UP AND MAKE RAM CRY
-        Shape[] temps = new Shape[Capacity];
-        Color[] tempc = new Color[Capacity];
+        MyShape[] temp = new MyShape[Capacity];
 
-        for(int i = 0;i<as.length;i++){  //pass every elem into temp array
-            temps[i]=as[i];
-            tempc[i]=ac[i];
+        for(int i = 0;i<size;i++){  //pass every elem into temp array
+            temp[i]=a[i];
         }
         //pass temp array to main array BIGGER SIZE!!!!!!
-        as=temps;
-        ac=tempc;
+        a=temp;
     }
 
     public void clear(){
         size =0;
+        decreaseSize();
     }
 
+
+    public void decreaseSize(){
+        Capacity = 10;
+        a = new MyShape[Capacity];
+    }
 }
